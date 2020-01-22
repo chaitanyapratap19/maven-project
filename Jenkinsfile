@@ -19,7 +19,7 @@ stage('compile my project')
 {
 steps
 {
-withMaven(jdk: 'localJDK', maven: 'localMaven') {
+withMaven(jdk: 'Java', maven: 'Maven') {
     sh 'mvn compile'
 	println 'added println'
 }}}
@@ -28,7 +28,7 @@ stage('test my project')
 {
 steps
 {
-withMaven(jdk: 'localJDK', maven: 'localMaven') {
+withMaven(jdk: 'Java', maven: 'Maven') {
     sh 'mvn test'
 }}}
     
@@ -36,7 +36,7 @@ stage('package my project')
 {
 steps
 {
-withMaven(jdk: 'localJDK', maven: 'localMaven') {
+withMaven(jdk: 'Java', maven: 'Maven') {
     sh 'mvn package'
 }}}
     
@@ -47,7 +47,7 @@ stage('package my install')
 {
 steps
 {
-withMaven(jdk: 'localJDK', maven: 'localMaven') {
+withMaven(jdk: 'Java', maven: 'Maven') {
     sh 'mvn install'
 }}}
 	
@@ -59,7 +59,7 @@ stage('deploy to  tomcat')
 steps
 {
     sshagent(['tomcat']) {
-	 sh 'scp -o StrictHostKeyChecking=no */target/*.war ec2-user@172.31.93.79:/var/lib/tomcat/webapps'
+	 sh 'scp -o StrictHostKeyChecking=no */target/*.war ec2-user@172.31.39.255:/var/lib/tomcat/webapps'
 						}
 }
 }
